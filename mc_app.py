@@ -20,9 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import mc_library_utn as utn
+from mc_library_utn import(
+    clear_console, UTN_messenger, mc_menu_principal
+)
+from mc_validaciones import(
+    validar_salida
+)
 from mc_clinica import Clinica
-from cm_paciente import Paciente
+from mc_paciente import Paciente
 from mc_turno import Turno
 
 
@@ -32,11 +37,13 @@ def main_app():
     """
     
     while True:
-        selected_option = None
         
-        match selected_option:
+        opcion = mc_menu_principal()
+        lista = []
+        
+        match opcion:
             case 1: # Alta paciente
-                pass
+                Paciente.alta_paciente(lista)
             case 2: # Alta turno
                 pass
             case 3: # Ordenar turnos
@@ -52,8 +59,10 @@ def main_app():
             case 8: # Mostrar informe
                 pass
             case 9: # Salir
+                validar_salida()
+                print("¡¡¡Gracias por usar nuestra app!!!")
                 break
             case _:
-                utn.UTN_messenger('Opción inválida. Por favor, seleccione una opción válida.', 'Error')
-        utn.clear_console()
+                UTN_messenger('Opción inválida. Por favor, seleccione una opción válida.', 'Error')
+        clear_console()
             

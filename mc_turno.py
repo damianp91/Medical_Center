@@ -21,4 +21,24 @@
 # SOFTWARE.
 
 class Turno:
-    pass
+    """
+    Clase que representa un turno en una clínica.
+    Atributos:
+    ----------
+    id_turno : int
+        Identificador único del turno.
+    id_paciente : int
+        Identificador único del paciente.
+    especialidad : str
+        Especialidad médica para la que se ha asignado el turno.
+    monto_pagar : float
+        Monto a pagar por el turno.
+    estado : str
+        Estado del turno (por ejemplo: "pendiente", "confirmado", "cancelado").
+    """
+    def __init__(self, id_turno: int, id_paciente: int, especialidad: str, monto_pagar: float, estado: str):
+        self.id_turno = id_turno
+        self.id_paciente = id_paciente
+        self.especialidad = especialidad
+        self.monto_pagar = monto_pagar
+        self.estado = estado

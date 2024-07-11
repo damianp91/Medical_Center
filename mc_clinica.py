@@ -21,4 +21,32 @@
 # SOFTWARE.
 
 class Clinica:
-    pass
+    """
+    Clase que representa una clínica.
+    Atributos:
+    ----------
+    razon_social : str
+        La razón social de la clínica.
+    lista_pacientes : List[str]
+        Lista de nombres de pacientes.
+    lista_turnos : List[str]
+        Lista de turnos asignados a los pacientes.
+    especialidades : Dict{clave:valor}
+        Diccionario de especialidades médicas disponibles en la clínica.
+    obras_sociales : Dict{clave:valor}
+        Diccionario de obras sociales que acepta la clínica.
+    recaudacion : float
+        La recaudación total de la clínica.
+    pacientes_no_atencion : Bool
+        Bandera para identificar pacientes que no han recibido atención.
+    """
+    def __init__(self, razon_social: str, lista_pacientes: list, lista_turnos: list,\
+    especialidades: dict, obras_sociales: dict, recaudacion: float, pacientes_no_atencion: bool):
+        self.razon_social = razon_social
+        self.lista_pacientes = lista_pacientes
+        self.lista_turnos = lista_turnos
+        self.especialidades = especialidades
+        self.obras_sociales = obras_sociales
+        self.recaudacion = recaudacion
+        self.pacientes_no_atencion = pacientes_no_atencion
+

@@ -21,7 +21,15 @@
 # SOFTWARE.
 
 import os
-import mc_validaciones as val
+from mc_paciente import Paciente
+from mc_validaciones import (
+    validar_entero
+)
+from mc_menus import (
+    menu_principal
+)
+from datetime import datetime
+
 
 def clear_console():
     """
@@ -32,6 +40,7 @@ def clear_console():
     if os in ['nt', 'dos', 'ce']:
         os.system('clear')
     else: os.system('cls')    
+
 
 def UTN_messenger(message: str, message_type: str = None, new_line: bool = False) -> (None):
     """
@@ -61,6 +70,118 @@ def UTN_messenger(message: str, message_type: str = None, new_line: bool = False
     print(final_message)
 
 
+def mc_menu_principal() -> (int):
+    """
+    Muestra en cosola menu principal y valida si la opcion ingresada sea correcta
+    Returns:
+        (int): devuelve -1 si no es un valor numerico o el valor ingresado
+    """
+    valor = -1
+    menu_principal()
+    opcion = input("\nIngrese la opcion (1-9): ")
+    if validar_entero(opcion, 1, 9):
+        valor = int(opcion)
+    return valor
 
 
+def ingreso_fecha() -> (datetime):
+    """
+    Pide por consola dia, mes, anio para ser validados y formateados como (dd/mm/aaaa)
+    Returns:
+        datetime: Devuelve objeto de tipo datetime o None en caso de no ingresar los datos
+        correctamente.
+    """
+    dia = input("\nIngrese dia (dd): ")
+    mes = input("Ingrese mes (mm): ")
+    anio = input("Ingrese anio (aaaa): ")
+    
+    fecha = None
+    if validar_entero(dia, 1, 31) and validar_entero(mes, 1, 12)\
+        and validar_entero(anio, 1800, 3000):
+            formato = f"{int(dia):02d}/{int(mes):02d}/{anio}"
+            
+            try:
+                fecha = datetime.strptime(formato, '%d/%m/%Y')
+                print("\nFecha correcta")
+            except:
+                print("\nLa fecha ingresada no es válida.")
+    
+    else:
+        print("\nEl dato ingresado no es numerico o no respeta el formato pedido (dd)(mm)(aaaa)")
+    
+    return fecha
 
+
+def fecha_hoy() -> (datetime):
+    """
+    Obtiene la fecha actual y la devuelve como un objeto datetime.
+    
+    Returns:
+        datetime: La fecha actual como un objeto datetime.
+    """
+    hoy = datetime.now()
+    
+    return hoy
+
+
+def bucar(lista: list[dict], clave: str, valor: str) -> (bool):
+    """
+    Busca por clave y valor si el elemnto esta en la lista de diccionarios
+    retorna un True 
+    Args:
+        proyectos (list[dict]): Lista de diccionarios de proyectos
+        calve (str): calve a buscar
+        valor (str): valor a comparar
+    Returns:
+        (bool): Retorna un True si se encuantra el valor o por defecto retorna un False
+    """
+    buscar_ok = False
+    if lista:
+        for elemento in lista:
+            if elemento.get(clave) == valor:
+                buscar_ok = True
+    
+    return buscar_ok
+
+
+def asignacion_id(proyectos: list[dict]) -> (int):
+    """
+    Asigna un nuevo ID autoincremental basado en los IDs existentes en la lista de proyectos.
+    Args:
+        proyectos (list[dict]): Lista de diccionarios con los proyectos existentes.
+    Returns:
+        int: El nuevo ID autoincremental.
+    """
+    id = 1
+    if proyectos:
+        ultimo_id = max(int(proyecto['id']) for proyecto in proyectos)
+        id = ultimo_id + 1 
+    
+    return id
+
+
+def normalizar_frase(frase: str) -> (str):
+    """
+    Capitaliza las palabras de más de tres caracteres en una frase.
+    Args:
+        frase (str): Cadena de caracteres a normalizar.
+    Returns:
+        str: Frase normalizada con palabras de más de tres caracteres
+        capitalizadas.
+    """
+    frase = frase.split()
+    list_aux = []
+    
+    for palabra in frase:
+        if len(palabra) > 3:
+            palabra = palabra.capitalize()
+        list_aux.append(palabra)
+    
+    frase_hecha = ' '.join(list_aux)
+    
+    return frase_hecha
+
+
+def mc_alta_paciente(lista_pacientes: list[dict]) -> (list[dict]):
+    if lista_pacientes:
+        pass
