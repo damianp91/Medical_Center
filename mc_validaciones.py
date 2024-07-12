@@ -27,7 +27,7 @@ from mc_menus import(
 
 
 
-def validar_caracteres(texto: str, longitud: int, alfanumerico= False) -> (bool):
+def validar_caracteres(texto: str, longitud: int, alfanumerico= True) -> (bool):
     """
     Valida cadena de caracteres si son alfabeticos o alfanumericos segun
     eleccion por parametro
@@ -75,30 +75,29 @@ def validar_entero(numero_str: str, minimo: int, maximo: int) -> (bool):
 # ○ Si el paciente tiene 60 años o más, la única opción disponible a seleccionar
 # será PAMI. Si tiene menos de 60, puede seleccionar las restantes EXCEPTO
 # PAMI.
-def validar_obre_social(anios_paciente: int) -> (str):
+def validar_obra_social(opcion: str, anios_paciente: str) -> (str):
     """
     Valida y selecciona una obra social para el paciente basado en su edad
     Args:
+        opcion (str): opcion por parametro
         anios_paciente (int): anios de paciente a validar
     Returns:
         str: Devuelve una obra social entre Swiss Médical, Apres, PAMI,
             Particular
     """
     obras = {
-        '1': 'Swiss Médical',
+        '1': 'Swiss Medical',
         '2': 'Apres',
         '3': 'PAMI',
         '4': 'Particular'
     }
     
-    menu_obra_social()
-    seleccion = input("Ingrese opcion: ")
-    if validar_entero(seleccion, 1, 4) and anios_paciente < 60:
-        obra = obras[seleccion]
-        print(f"Se selecciono especialidad: {obra}.")
-    else:
-        obra = obras['4']
-        print(f"Se selecciono especialidad: {obra}.")
+    if validar_entero(opcion, 1, 4) and int(anios_paciente) < 60:
+        obra = obras[opcion]
+        print(f"Se selecciono obra social: {obra}.")
+    elif opcion == '3': 
+        obra = obras['3']
+        print(f"Se selecciono obra social: {obra}.")
     
     return obra
 # ● Especialidad: El valor debe estar entre las opciones: Médico Clínico, Odontología,
@@ -144,26 +143,26 @@ def estado_turno() -> (str):
 # ■ Si la edad es 80 o superior, se aplica un -3% extra
 # ○ Si el paciente es Particular (Aplicar +5% y además...):
 # ■ Si la edad está entre 40 y 60, se aplica un +15% extra
-def calcular_monto_a_pagar(obra_social: str, edad: int) -> (float):
+def calcular_monto_a_pagar(obra_social: str, edad: str) -> (int):
     """
     Calcula el monto a pagar para una atención médica basado en la obra social y la 
     edad del paciente.
     Args:
         obra_social (str): La obra social del paciente.
         edad (int): La edad del paciente.
-        Returns: float: El monto a pagar por la atención médica.
+        Returns: int: El monto a pagar por la atención médica.
     """
     precio_base = 4000
     descuentos = {
-        'Swiss Medical': lambda edad: precio_base * 0.6 * (0.9 if 18 <= edad <= 60 else 1),
-        'Apres': lambda edad: precio_base * 0.75 * (0.97 if 26 <= edad <= 59 else 1),
-        'PAMI': lambda edad: precio_base * 0.4 * (0.97 if edad >= 80 else 1),
-        'Particular': lambda edad: precio_base * 1.05 * (1.15 if 40 <= edad <= 60 else 1)
+        'Swiss Medical': lambda edad: precio_base * 0.6 * (0.9 if 18 <= int(edad) <= 60 else 1),
+        'Apres': lambda edad: precio_base * 0.75 * (0.97 if 26 <= int(edad) <= 59 else 1),
+        'PAMI': lambda edad: precio_base * 0.4 * (0.97 if int(edad) >= 80 else 1),
+        'Particular': lambda edad: precio_base * 1.05 * (1.15 if 40 <= int(edad) <= 60 else 1)
     }
     
     monto_a_pagar = descuentos.get(obra_social, lambda edad: precio_base)(edad)
     
-    return round(monto_a_pagar, 2)
+    return monto_a_pagar
 
 
 def validar_salida() -> (None):

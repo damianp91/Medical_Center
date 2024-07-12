@@ -21,10 +21,15 @@
 # SOFTWARE.
 
 from mc_library_utn import(
-    clear_console, UTN_messenger, mc_menu_principal
+    clear_console, UTN_messenger, mc_menu_principal, mc_alta_paciente,
+    mc_alta_turno, mc_mostrar_tabla_ordenada, mc_pacientes_espera,
+    atender_pacientes, mc_cobrar_atencion, mc_informe
 )
 from mc_validaciones import(
     validar_salida
+)
+from mc_manejo_archivos import(
+    copia_json_original, pasar_lista_archivo
 )
 from mc_clinica import Clinica
 from mc_paciente import Paciente
@@ -39,25 +44,30 @@ def main_app():
     while True:
         
         opcion = mc_menu_principal()
-        lista = []
+        copia_pacientes = copia_json_original('lista_pacientes.json')
+        copia_turnos = copia_json_original('lista_turnos.json')
         
         match opcion:
             case 1: # Alta paciente
-                Paciente.alta_paciente(lista)
+                nueva_lista_pacientes = mc_alta_paciente(copia_pacientes)
+                pasar_lista_archivo(nueva_lista_pacientes, 'lista_pacientes.json')
             case 2: # Alta turno
-                pass
+                nueva_lista_turnos = mc_alta_turno(copia_turnos, copia_pacientes)
+                pasar_lista_archivo(nueva_lista_turnos, 'lista_turnos.json')
             case 3: # Ordenar turnos
-                pass
+                mc_mostrar_tabla_ordenada(copia_turnos)
             case 4: # Mostrar pacientes en espera
-                pass
+                mc_pacientes_espera(copia_turnos, copia_pacientes)
             case 5: # Atender pacientes
-                pass
-            case 5: # Cobrar atenciones
-                pass
+                nueva_lista_atendidos =atender_pacientes(copia_turnos)
+                pasar_lista_archivo(nueva_lista_atendidos, 'lista_turnos.json')
+            case 6: # Cobrar atenciones
+                lista_cobro = mc_cobrar_atencion(copia_turnos)
+                pasar_lista_archivo(lista_cobro, 'lista_turnos.json')
             case 7: # Cerrar caja
                 pass
             case 8: # Mostrar informe
-                pass
+                mc_informe(copia_pacientes, copia_turnos)
             case 9: # Salir
                 validar_salida()
                 print("¡¡¡Gracias por usar nuestra app!!!")

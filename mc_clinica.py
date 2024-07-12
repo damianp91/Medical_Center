@@ -42,11 +42,48 @@ class Clinica:
     """
     def __init__(self, razon_social: str, lista_pacientes: list, lista_turnos: list,\
     especialidades: dict, obras_sociales: dict, recaudacion: float, pacientes_no_atencion: bool):
-        self.razon_social = razon_social
-        self.lista_pacientes = lista_pacientes
-        self.lista_turnos = lista_turnos
-        self.especialidades = especialidades
-        self.obras_sociales = obras_sociales
-        self.recaudacion = recaudacion
-        self.pacientes_no_atencion = pacientes_no_atencion
+        self.__razon_social = razon_social
+        self.__lista_pacientes = lista_pacientes
+        self.__lista_turnos = lista_turnos
+        self.__especialidades = especialidades
+        self.__obras_sociales = obras_sociales
+        self.__recaudacion = recaudacion
+        self.__pacientes_no_atencion = pacientes_no_atencion
+    
+    # Getters
+    #-----------------------------------------------------------------------
+    def get_razon_social(self) -> (str):
+        return self.__razon_social
+    
+    
+    def get_lista_pacientes(self) -> (list):
+        return self.__lista_pacientes
+    
+    
+    def get_lista_turnos(self) -> (list):
+        return self.__lista_turnos
+    
+    
+    def get_especialidades(self) -> (dict):
+        return self.__especialidades
+    
+    
+    def get_obras_sociales(self) -> (dict):
+        return self.__obras_sociales
+    
+    
+    def get_recaudacion(self) -> (float):
+        return self.__recaudacion
+    
+    
+    def get_pacientes_no_atencion(self) -> (float):
+        return self.__pacientes_no_atencion
+        
+    def agregar_monto(self, monto: float):
+        """
+        Agrega un monto a la recaudación total de la clínica.
+        Args:
+            monto (float): El monto a agregar.
+        """
+        self.__recaudacion += monto
 

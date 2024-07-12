@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "id_paciente": "4",
+        "especialidad": "Medico Clinico.",
+        "monto_pagar": "2910.0",
+        "estado_turno": "Finalizado"
+    },
+    {
+        "id": "2",
+        "id_paciente": "2",
+        "especialidad": "Psicologia.",
+        "monto_pagar": "4200.0",
+        "estado_turno": "Finalizado"
+    }
+]

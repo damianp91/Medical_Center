@@ -1,0 +1,47 @@
+[
+    {
+        "id": "1",
+        "dni": "95772790",
+        "nombre": "Damian",
+        "apellido": "Posada",
+        "edad": "33",
+        "fecha ingreso": "12-07-2024",
+        "obra social": "Swiss Medical"
+    },
+    {
+        "id": "2",
+        "dni": "23457643",
+        "nombre": "Paula",
+        "apellido": "Alvarez",
+        "edad": "29",
+        "fecha ingreso": "12-07-2024",
+        "obra social": "Particular"
+    },
+    {
+        "id": "3",
+        "dni": "34569854",
+        "nombre": "Merengano",
+        "apellido": "Perez",
+        "edad": "45",
+        "fecha ingreso": "12-07-2024",
+        "obra social": "PAMI"
+    },
+    {
+        "id": "4",
+        "dni": "43567654",
+        "nombre": "Dieguin",
+        "apellido": "Pinguin",
+        "edad": "31",
+        "fecha ingreso": "12-07-2024",
+        "obra social": "Apres"
+    },
+    {
+        "id": "5",
+        "dni": "45762345",
+        "nombre": "Lionel Andres",
+        "apellido": "Messi",
+        "edad": "37",
+        "fecha ingreso": "12-07-2024",
+        "obra social": "Swiss Medical"
+    }
+]

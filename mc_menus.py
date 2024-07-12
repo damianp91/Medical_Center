@@ -40,8 +40,9 @@ def menu_principal() -> (None):
     05. Atender pacientes.
     06. Cobrar atenciones.
     07. Cerrar caja.
-    08. Informar el monto total obtenido en las 
-        atenciones.
+    08. Monto total obtenido de
+        pacientes de Swiss Medical
+        mayores de 21 años.
     09. Salir 
     =============================================
     """
@@ -62,7 +63,7 @@ def menu_obra_social() -> (None):
     ==================================
     \tOBRA SOCIAL
     ==================================
-    1. Swiss Médical.
+    1. Swiss Medical.
     2. Apres.
     3. PAMI.
     4. Particular.
@@ -85,10 +86,31 @@ def menu_especialidad() -> (None):
     ==================================
     \tESPECIALIDAD
     ==================================
-    1. 'Medico Clínico.
+    1. 'Medico Clinico.
     2. 'Odontologia.
     3. 'Psicologia.
     4. 'Traumatologia.
+    ==================================
+    """
+    print(sub_menu)
+
+
+def menu_ordenamiento() -> (None):
+    """
+    Imprime en consola el submenu del sistema para
+    seleccionar especialidad
+    Args:
+        None.
+    Returns:
+        str: Devuelve una cadena de caracteres
+    """
+    sub_menu = \
+    """
+    ==================================
+        SENTIDO ORDEMANIENTO
+    ==================================
+    1. Obra Social ASC
+    2. Monto DESC
     ==================================
     """
     print(sub_menu)
@@ -102,5 +124,4 @@ def consulta_elemento(palabra: str) -> (str):
     Returns:
         str: El valor ingresado por el usuario.
     """
-    mensaje = input(f"Ingrese {palabra}: ")
-    return mensaje
+    return input(f"Ingrese {palabra}: ")
