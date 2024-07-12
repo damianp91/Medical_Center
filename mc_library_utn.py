@@ -528,7 +528,6 @@ def mc_informe(lista_pacientes: list[dict], lista_turnos: list[dict]) -> (None):
     pacientes_swiss_medical = [paciente for paciente in lista_pacientes if paciente.get('obra social') == 'Swiss Medical']
     if not pacientes_swiss_medical:
         print("No se encontraron pacientes con obra social 'Swiss Medical'.")
-        return
     
     ids_pacientes_swiss = [paciente['id'] for paciente in pacientes_swiss_medical]
     
